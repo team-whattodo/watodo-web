@@ -1,8 +1,8 @@
+import Router from "./components/Router";
+
 const App = () => {
   return (
-    <div>
-      <div></div>
-    </div>
+    <Router />
   );
 };
 

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { COLOR } from "../../constants/colors";
 import { Link } from "react-router-dom";
+import StyledInput from "../../components/StyledInput";
 
 export const Container = styled.div`
   width: 100%;
@@ -37,15 +38,33 @@ export const Logo = styled.img`
 
 export const Form = styled.form`
   width: 100%;
-  max-width: 32rem;
-  height: 44rem;
+  max-width: 40rem;
+  height: 52rem;
 `;
+
+export const Label = styled.p`
+  font-size: 1.6rem;
+  width: 100%;
+  margin-bottom: 0.4rem;
+`
+
+export const HalfInput = styled(StyledInput)`
+  width: calc(50% - 0.4rem);
+`
+
+export const Row = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`
+
 
 export const TitleWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
+  margin: 1.2rem 0;
 `;
 
 export const Warning = styled.p`
@@ -54,6 +73,10 @@ export const Warning = styled.p`
   color: #ff2929;
   height: 2rem;
 `;
+
+export const HalfWarning = styled(Warning)`
+  width: calc(50% - 0.4rem);
+`
 
 export const NavWrap = styled.div`
   width: 100%;

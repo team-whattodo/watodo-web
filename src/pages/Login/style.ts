@@ -37,7 +37,7 @@ export const Logo = styled.img`
 
 export const Form = styled.form`
   width: 100%;
-  max-width: 32rem;
+  max-width: 40rem;
   height: 44rem;
 `;
 
@@ -46,6 +46,7 @@ export const TitleWrap = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
+  margin: 1.2rem 0;
 `
 
 export const Warning = styled.p`

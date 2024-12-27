@@ -6,6 +6,7 @@ import StyledInput from "../../components/StyledInput";
 import * as S from "./style";
 import DohyeonText from "../../components/DohyeonText";
 import { COLOR } from "../../constants/colors";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -22,6 +23,8 @@ const Login = () => {
     },
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = async (loginForm: LoginForm) => {
     try {
       const { data } = await axios.post(
@@ -31,6 +34,7 @@ const Login = () => {
       if (data) {
         localStorage.setItem("ACCESS_TOKEN", data.accessToken);
         localStorage.setItem("REFRESH_TOKEN", data.refreshToken);
+        navigate("/");
       }
     } catch (error: any) {
       console.log(error);

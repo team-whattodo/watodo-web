@@ -6,7 +6,8 @@ import * as S from "./style";
 import DohyeonText from "../../components/DohyeonText";
 import { COLOR } from "../../constants/colors";
 import { SignupForm } from "../../types/reactHookFrom/signupForm";
-import { EMAIL_REGEX } from "../../constants/regex";
+import { EMAIL_REGEX, PASSWORD_REGEX, PAT_REGEX } from "../../constants/regex";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const {
@@ -26,36 +27,41 @@ const Signup = () => {
     },
   });
 
+  const navigate = useNavigate();
+
   const onSubmit = async (signupForm: SignupForm) => {
     try {
-      const { data } = await axios.post(
+      await axios.post(
         `${import.meta.env.VITE_API_URL}/auth/signup`,
         signupForm
       );
-      if (data) {
-        localStorage.setItem("ACCESS_TOKEN", data.accessToken);
-        localStorage.setItem("REFRESH_TOKEN", data.refreshToken);
-      }
+      navigate('/login');
     } catch (error: any) {
       console.log(error);
       if (error.response) {
-        const { status } = error.response;
-        if (status === 404) {
-          setError("email", {
+        const { data } = error.response;
+        if (data.message === "PAT is already in use") {
+          setError("pat", {
             type: "manual",
-            message: "존재하지 않는 회원입니다.",
+            message: "이미 사용중인 PAT 입니다.",
           });
         }
-        if (status === 401) {
-          setError("password", {
+        if (data.message === "Email is already in use") {
+          setError("email", {
             type: "manual",
-            message: "올바르지 않은 비밀번호입니다.",
+            message: "이미 사용중인 이메일 입니다.",
+          });
+        }
+        if (data.message === "Username is already in use") {
+          setError("username", {
+            type: "manual",
+            message: "이미 사용중인 아이디 입니다.",
           });
         }
       } else {
         setError("root", {
           type: "manual",
-          message: "로그인 실패: 네트워크 에러",
+          message: "회원가입 실패: 네트워크 에러",
         });
       }
     }
@@ -77,6 +83,7 @@ const Signup = () => {
             </DohyeonText>
             <S.Logo src="/assets/WATODO.svg" />
           </S.TitleWrap>
+          <S.Label>이메일</S.Label>
           <StyledInput
             type="text"
             {...register("email", {
@@ -90,27 +97,48 @@ const Signup = () => {
             placeholder="example@watodo.kr"
           />
           <S.Warning>{errors.email && errors.email.message}</S.Warning>
-          <StyledInput
-            type="text"
-            {...register("username", {
-              required: "한 글자 이상 입력해주세요.",
-            })}
-            $fontSize="1.6rem"
-            placeholder="watodo"
-          />
-          <S.Warning>{errors.username && errors.username.message}</S.Warning>
-          <StyledInput
-            type="text"
-            {...register("nickname", {
-              required: "한 글자 이상 입력해주세요.",
-            })}
-            $fontSize="1.6rem"
-            placeholder="김투두"
-          />
-          <S.Warning>{errors.email && errors.email.message}</S.Warning>
+          <S.Label>유저정보</S.Label>
+          <S.Row>
+            <S.HalfInput
+              type="text"
+              {...register("username", {
+                minLength: {
+                  value: 1,
+                  message: "한 글자 이상 입력해주세요.",
+                },
+              })}
+              $fontSize="1.6rem"
+              placeholder="아이디"
+            />
+
+            <S.HalfInput
+              type="text"
+              {...register("nickname", {
+                minLength: {
+                  value: 1,
+                  message: "한 글자 이상 입력해주세요.",
+                },
+              })}
+              $fontSize="1.6rem"
+              placeholder="닉네임"
+            />
+          </S.Row>
+          <S.Row>
+            <S.HalfWarning>
+              {errors.username && errors.username.message}
+            </S.HalfWarning>
+            <S.HalfWarning>
+              {errors.nickname && errors.nickname.message}
+            </S.HalfWarning>
+          </S.Row>
+          <S.Label>비밀번호 & PAT</S.Label>
           <StyledInput
             type="password"
             {...register("password", {
+              pattern: {
+                value: PASSWORD_REGEX,
+                message: "영문, 숫자, 특수문자 조합 8자 이상 입력해주세요.",
+              },
               required: true,
             })}
             $fontSize="1.6rem"
@@ -119,27 +147,34 @@ const Signup = () => {
           <S.Warning>{errors.password && errors.password.message}</S.Warning>
           <StyledInput
             type="password"
-            {...register("password", {
+            {...register("pat", {
               required: true,
+              pattern: {
+                value: PAT_REGEX,
+                message: "올바르지 않은 토큰 형식 입니다.",
+              },
             })}
             $fontSize="1.6rem"
             placeholder="************"
           />
-          <S.Warning>{errors.password && errors.password.message}</S.Warning>
+          <S.Warning>{errors.pat && errors.pat.message}</S.Warning>
           <S.Spacer />
           <S.Warning>{errors.root && errors.root.message}</S.Warning>
           <S.NavWrap>
-            <S.Nav to="/signup">회원이 아니신가요?</S.Nav>
+            <S.Nav to="/login">회원이신가요?</S.Nav>
           </S.NavWrap>
           <StyledButton
             disabled={
               email.trim().length < 1 ||
               password.trim().length < 1 ||
+              nickname.trim().length < 1 ||
+              username.trim().length < 1 ||
+              pat.trim().length < 1 ||
               isSubmitting
             }
             type="SUBMIT"
           >
-            로그인
+            회원가입
           </StyledButton>
         </S.SignupBox>
       </S.Form>

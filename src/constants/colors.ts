@@ -10,6 +10,7 @@ export const COLOR = {
   900: "#183f36",
   backgroundColor: "#1b1b1b",
   boxColor: "#202020",
-  itemColor: "#3b3b3b",
+  grayColor: "#888",
   borderColor: "#464646",
+  darkColor: "#171717"
 };

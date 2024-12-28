@@ -1,13 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DohyeonText from "../../components/DohyeonText";
 import * as S from "./style";
 import useGetProjectDetail from "../../hooks/project/useGetProjectDetail";
 import JuaText from "../../components/JuaText";
 import { COLOR } from "../../constants/colors";
+import Sprint from "../../components/Sprint";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
-  const { data, isLoading } = useGetProjectDetail(projectId);
+  const { data } = useGetProjectDetail(projectId);
+  const navigate = useNavigate();
 
   return (
     <S.Container>
@@ -19,16 +21,26 @@ const ProjectDetail = () => {
       </S.Header>
       <S.Grid>
         <S.Section $featured style={{ height: "52rem" }}>
-          <DohyeonText color="white" fontSize="3.2rem">
-            WBS 일정
-          </DohyeonText>
+          {(data?.sprint || data?.wbs) && (
+            <DohyeonText color="white" fontSize="3.2rem">
+              {data.sprint ? "스프린트 일정" : "WBS 일정"}
+            </DohyeonText>
+          )}
+          {(data?.sprint || data?.wbs) && (
+            <Sprint />
+          )}
+
           {!data?.sprint && !data?.wbs && (
             <S.NoScheduleWrap>
               <S.NoScheduleText>아직 일정이 없습니다.</S.NoScheduleText>
               <DohyeonText color="white" fontSize="3.2rem">
                 일정을 만들고 효율적인 팀 프로젝트를 진행하세요!
               </DohyeonText>
-              <S.NoScheduleButton>시작하기</S.NoScheduleButton>
+              <S.NoScheduleButton
+                onClick={() => navigate(`/project/${projectId}/schedule`)}
+              >
+                시작하기
+              </S.NoScheduleButton>
             </S.NoScheduleWrap>
           )}
         </S.Section>
@@ -79,7 +91,7 @@ const ProjectDetail = () => {
 
         <S.Section $featured>
           <DohyeonText color="white" fontSize="2.8rem">
-            프로젝트 타임라인
+            타임라인
           </DohyeonText>
           {!data?.sprint && !data?.wbs ? (
             <S.NoScheduleWrap>

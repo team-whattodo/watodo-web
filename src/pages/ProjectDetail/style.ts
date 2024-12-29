@@ -28,7 +28,7 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.6rem;
-  padding: 1rem;
+  padding: 2rem;
 
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
@@ -46,6 +46,7 @@ export const Section = styled.section<{ $featured: boolean;}>`
   border: 0.1rem solid ${COLOR.borderColor};
   display: flex;
   flex-direction: column;
+  border-radius: 0.8rem;
 
   ${(props) =>
     props.$featured &&

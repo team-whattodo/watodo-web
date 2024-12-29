@@ -26,9 +26,7 @@ const ProjectDetail = () => {
               {data.sprint ? "스프린트 일정" : "WBS 일정"}
             </DohyeonText>
           )}
-          {(data?.sprint || data?.wbs) && (
-            <Sprint />
-          )}
+          {(data?.sprint || data?.wbs) && <Sprint />}
 
           {!data?.sprint && !data?.wbs && (
             <S.NoScheduleWrap>
@@ -55,9 +53,10 @@ const ProjectDetail = () => {
           <DohyeonText color="white" fontSize="3.2rem">
             진척도
           </DohyeonText>
-          {!data?.sprint && !data?.wbs ? (
+          {(data?.sprint && data?.sprint?.task.length < 1) ||
+          (data?.wbs && data?.wbs?.task.length < 1) ? (
             <S.NoScheduleWrap>
-              <S.EmptyText>아직 일정이 없습니다.</S.EmptyText>
+              <S.EmptyText>아직 할 일이 없습니다.</S.EmptyText>
             </S.NoScheduleWrap>
           ) : (
             <></>
@@ -93,9 +92,10 @@ const ProjectDetail = () => {
           <DohyeonText color="white" fontSize="2.8rem">
             타임라인
           </DohyeonText>
-          {!data?.sprint && !data?.wbs ? (
+          {(data?.sprint && data?.sprint?.task.length < 1) ||
+          (data?.wbs && data?.wbs?.task.length < 1) ? (
             <S.NoScheduleWrap>
-              <S.EmptyText>아직 일정이 없습니다.</S.EmptyText>
+              <S.EmptyText>아직 할 일이 없습니다.</S.EmptyText>
             </S.NoScheduleWrap>
           ) : (
             <S.TimelineGrid>

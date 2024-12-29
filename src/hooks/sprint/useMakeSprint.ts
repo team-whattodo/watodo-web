@@ -26,7 +26,7 @@ const useMakeSprint = (
         }
         setError("root", {
           type: "manual",
-          message: "프로젝트의 멤버가 아닙니다.",
+          message: "네트워크 에러",
         });
       }
     }

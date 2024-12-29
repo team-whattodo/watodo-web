@@ -6,4 +6,5 @@ export const P = styled.p<{ $fontSize: string; $color: string }>`
   color: ${({ $color }) => $color};
   font-style: italic;
   padding-right: 0.4rem;
+  gap: 0.4rem;
 `;

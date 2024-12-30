@@ -5,6 +5,7 @@ import useGetProjectDetail from "../../hooks/project/useGetProjectDetail";
 import JuaText from "../../components/JuaText";
 import { COLOR } from "../../constants/colors";
 import Sprint from "../../components/Sprint";
+import Progress from "../../components/Progress";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -59,7 +60,7 @@ const ProjectDetail = () => {
               <S.EmptyText>아직 할 일이 없습니다.</S.EmptyText>
             </S.NoScheduleWrap>
           ) : (
-            <></>
+            <Progress data={data?.sprint?.task || data?.wbs?.task} />
           )}
         </S.Section>
 

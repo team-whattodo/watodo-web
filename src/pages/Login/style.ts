@@ -11,17 +11,6 @@ export const Container = styled.div`
   padding: 1rem;
 `
 
-export const LoginBox = styled.div`
-  border: 0.1rem solid ${COLOR.borderColor};
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 0.8rem;
-  gap: 0.4rem;
-`
 
 export const Spacer = styled.div`
   flex: 1;
@@ -35,10 +24,23 @@ export const Logo = styled.img`
   padding-bottom: 0.4rem;
 `
 
+export const Label = styled.p`
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+  width: 100%;
+`
+
 export const Form = styled.form`
   width: 100%;
   max-width: 40rem;
   height: 44rem;
+  border: 0.1rem solid ${COLOR.borderColor};
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.8rem;
+  gap: 0.4rem;
 `;
 
 export const TitleWrap = styled.div`

@@ -25,6 +25,7 @@ export const Grid = styled.div`
   height: calc(100% - 6rem);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 12rem;
   overflow-y: scroll;
   gap: 0.8rem;
   margin-top: 1rem;

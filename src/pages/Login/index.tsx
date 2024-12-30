@@ -67,47 +67,47 @@ const Login = () => {
   return (
     <S.Container>
       <S.Form onSubmit={handleSubmit(onSubmit)}>
-        <S.LoginBox>
-          <S.TitleWrap>
-            <DohyeonText color={COLOR[500]} fontSize="3.2rem">
-              로그인
-            </DohyeonText>
-            <S.Logo src="/assets/WATODO.svg" />
-          </S.TitleWrap>
-          <StyledInput
-            type="text"
-            {...register("email", {
-              required: true,
-            })}
-            $fontSize="1.6rem"
-            placeholder="example@watodo.kr"
-          />
-          <S.Warning>{errors.email && errors.email.message}</S.Warning>
-          <StyledInput
-            type="password"
-            {...register("password", {
-              required: true,
-            })}
-            $fontSize="1.6rem"
-            placeholder="************"
-          />
-          <S.Warning>{errors.password && errors.password.message}</S.Warning>
-          <S.Spacer />
-          <S.Warning>{errors.root && errors.root.message}</S.Warning>
-          <S.NavWrap>
-            <S.Nav to='/signup'>회원이 아니신가요?</S.Nav>
-          </S.NavWrap>
-          <StyledButton
-            disabled={
-              email.trim().length < 1 ||
-              password.trim().length < 1 ||
-              isSubmitting
-            }
-            type="SUBMIT"
-          >
+        <S.TitleWrap>
+          <DohyeonText color={COLOR[500]} fontSize="3.2rem">
             로그인
-          </StyledButton>
-        </S.LoginBox>
+          </DohyeonText>
+          <S.Logo src="/assets/WATODO.svg" />
+        </S.TitleWrap>
+        <S.Label>이메일</S.Label>
+        <StyledInput
+          type="text"
+          {...register("email", {
+            required: true,
+          })}
+          $fontSize="1.6rem"
+          placeholder="example@watodo.kr"
+        />
+        <S.Warning>{errors.email && errors.email.message}</S.Warning>
+        <S.Label>비밀번호</S.Label>
+        <StyledInput
+          type="password"
+          {...register("password", {
+            required: true,
+          })}
+          $fontSize="1.6rem"
+          placeholder="************"
+        />
+        <S.Warning>{errors.password && errors.password.message}</S.Warning>
+        <S.Spacer />
+        <S.Warning>{errors.root && errors.root.message}</S.Warning>
+        <S.NavWrap>
+          <S.Nav to="/signup">회원이 아니신가요?</S.Nav>
+        </S.NavWrap>
+        <StyledButton
+          disabled={
+            email.trim().length < 1 ||
+            password.trim().length < 1 ||
+            isSubmitting
+          }
+          type="SUBMIT"
+        >
+          로그인
+        </StyledButton>
       </S.Form>
     </S.Container>
   );

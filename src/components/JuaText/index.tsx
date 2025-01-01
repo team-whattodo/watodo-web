@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { P } from "./style";
 
 const JuaText = ({
@@ -7,7 +8,7 @@ const JuaText = ({
 }: {
   fontSize: string;
   color: string;
-  children: string;
+  children: string | ReactNode;
 }) => {
   return (
     <P $color={color} $fontSize={fontSize}>

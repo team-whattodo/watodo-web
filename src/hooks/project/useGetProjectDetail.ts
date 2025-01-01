@@ -29,9 +29,7 @@ const useGetProjectDetail = (projectId?: string) => {
     enabled: !!projectId,
   });
 
-  return {
-    data
-  }
+  return data
 };
 
 export default useGetProjectDetail;

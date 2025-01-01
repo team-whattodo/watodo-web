@@ -6,33 +6,42 @@ import JuaText from "../../components/JuaText";
 import { COLOR } from "../../constants/colors";
 import Sprint from "../../components/Sprint";
 import Progress from "../../components/Progress";
+import { useProjectStore } from "../../stores/project/useProjectStore";
+import Timeline from "../../components/Timeline";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
-  const { data } = useGetProjectDetail(projectId);
+  useGetProjectDetail(projectId);
   const navigate = useNavigate();
+  const { project } = useProjectStore();
 
   return (
     <S.Container>
       <S.Header>
         <JuaText color={COLOR[500]} fontSize="4rem">
-          {data?.title!}
+          {project?.title!}
         </JuaText>
-        <S.ProjectDetail>{data?.detail}</S.ProjectDetail>
+        <S.ProjectDetail>{project?.detail}</S.ProjectDetail>
       </S.Header>
       <S.Grid>
         <S.Section $featured style={{ height: "52rem" }}>
-          {(data?.sprint || data?.wbs) && (
-            <DohyeonText color="white" fontSize="3.2rem">
-              {data.sprint ? "스프린트 일정" : "WBS 일정"}
-            </DohyeonText>
+          {(project?.sprint || project?.wbs) && (
+            <>
+              <DohyeonText color="white" fontSize="2.4rem">
+                {project.sprint ? "스프린트 일정" : "WBS 일정"}
+              </DohyeonText>
+            </>
           )}
-          {(data?.sprint || data?.wbs) && <Sprint />}
+          {(project?.sprint || project?.wbs) && project.sprint ? (
+            <Sprint />
+          ) : (
+            <></>
+          )}
 
-          {!data?.sprint && !data?.wbs && (
+          {!project?.sprint && !project?.wbs && (
             <S.NoScheduleWrap>
               <S.NoScheduleText>아직 일정이 없습니다.</S.NoScheduleText>
-              <DohyeonText color="white" fontSize="3.2rem">
+              <DohyeonText color="white" fontSize="2.4rem">
                 일정을 만들고 효율적인 팀 프로젝트를 진행하세요!
               </DohyeonText>
               <S.NoScheduleButton
@@ -45,30 +54,30 @@ const ProjectDetail = () => {
         </S.Section>
 
         <S.Section $featured={false} style={{ gridRow: "span 2" }}>
-          <DohyeonText color="white" fontSize="2.8rem">
+          <DohyeonText color="white" fontSize="2.4rem">
             설정
           </DohyeonText>
         </S.Section>
 
         <S.Section $featured style={{ height: "20rem" }}>
-          <DohyeonText color="white" fontSize="3.2rem">
+          <DohyeonText color="white" fontSize="2.4rem">
             진척도
           </DohyeonText>
-          {(data?.sprint && data?.sprint?.task.length < 1) ||
-          (data?.wbs && data?.wbs?.task.length < 1) ? (
+          {(project?.sprint && project?.sprint?.task.length < 1) ||
+          (project?.wbs && project?.wbs?.task.length < 1) ? (
             <S.NoScheduleWrap>
               <S.EmptyText>아직 할 일이 없습니다.</S.EmptyText>
             </S.NoScheduleWrap>
           ) : (
-            <Progress data={data?.sprint?.task || data?.wbs?.task} />
+            <Progress data={project?.sprint?.task || project?.wbs?.task} />
           )}
         </S.Section>
 
         <S.Section
           $featured={false}
-          style={{ height: "40rem", gridRow: "span 2" }}
+          style={{ height: "42rem", gridRow: "span 2" }}
         >
-          <DohyeonText color="white" fontSize="2.8rem">
+          <DohyeonText color="white" fontSize="2.4rem">
             프로젝트 참여자
           </DohyeonText>
           <S.TeamList>
@@ -89,46 +98,21 @@ const ProjectDetail = () => {
           </S.TeamList>
         </S.Section>
 
-        <S.Section $featured>
-          <DohyeonText color="white" fontSize="2.8rem">
+        <S.Section $featured style={{ height: "20rem" }}>
+          <DohyeonText color="white" fontSize="2.4rem">
             타임라인
           </DohyeonText>
-          {(data?.sprint && data?.sprint?.task.length < 1) ||
-          (data?.wbs && data?.wbs?.task.length < 1) ? (
+          {(project?.sprint && project?.sprint?.task.length < 1) ||
+          (project?.wbs && project?.wbs?.task.length < 1) ? (
             <S.NoScheduleWrap>
               <S.EmptyText>아직 할 일이 없습니다.</S.EmptyText>
             </S.NoScheduleWrap>
           ) : (
-            <S.TimelineGrid>
-              <S.TimelineItem>
-                <S.TimelineLabel>현재 진행 중인 일정</S.TimelineLabel>
-                <S.TimelineContent>
-                  <DohyeonText color="white" fontSize="2.2rem">
-                    로그인 뷰 만들기
-                  </DohyeonText>
-                </S.TimelineContent>
-              </S.TimelineItem>
-              <S.TimelineItem>
-                <S.TimelineLabel>시작일</S.TimelineLabel>
-                <S.TimelineContent>
-                  <DohyeonText color="white" fontSize="2.2rem">
-                    Jan 15, 2024
-                  </DohyeonText>
-                </S.TimelineContent>
-              </S.TimelineItem>
-              <S.TimelineItem>
-                <S.TimelineLabel>마감일</S.TimelineLabel>
-                <S.TimelineContent>
-                  <DohyeonText color="white" fontSize="2.2rem">
-                    Jan 15, 2024
-                  </DohyeonText>
-                </S.TimelineContent>
-              </S.TimelineItem>
-            </S.TimelineGrid>
+            <Timeline />
           )}
         </S.Section>
 
-        <S.Section $featured>
+        <S.Section $featured style={{ height: "20rem" }}>
           <DohyeonText color="white" fontSize="2.4rem">
             뭐넣지
           </DohyeonText>

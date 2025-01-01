@@ -6,6 +6,7 @@ import Signup from "../../pages/Signup";
 import ProjectDetail from "../../pages/ProjectDetail";
 import MakeProject from "../../pages/MakeProject";
 import MakeSchedule from "../../pages/MakeSchedule";
+import Intro from "../../pages/Intro";
 
 const Router = () => {
   return (
@@ -15,11 +16,12 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
         </Route>
-        <Route path="/" element={<ProjectLayout />}>
-          <Route path="/project/:projectId" element={<ProjectDetail />} />
-          <Route path="/project/:projectId/schedule" element={<MakeSchedule />} />
-        </Route>
         <Route path="/make" element={<MakeProject />} />
+        <Route path="/" element={<ProjectLayout />}>
+          <Route index element={<Intro />} />
+          <Route path="project/:projectId" element={<ProjectDetail />} />
+          <Route path="project/:projectId/schedule" element={<MakeSchedule />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -3,31 +3,33 @@ import { CancelButton, DeleteButton, SubmitButton } from "./style";
 const StyledButton = ({
   disabled,
   onClick = () => {},
-  type,
+  styleType,
   children,
+  type,
 }: {
   disabled: boolean;
   onClick?: () => void;
-  type: "DELETE" | "SUBMIT" | "CANCEL";
+  styleType: "DELETE" | "SUBMIT" | "CANCEL";
   children: string;
+  type?: "button" | "submit" | "reset" | undefined;
 }) => {
-  if (type === "SUBMIT")
+  if (styleType === "SUBMIT")
     return (
-      <SubmitButton onClick={onClick} disabled={disabled}>
+      <SubmitButton onClick={onClick} disabled={disabled} type={type}>
         {children}
       </SubmitButton>
     );
 
-  if (type === "CANCEL")
+  if (styleType === "CANCEL")
     return (
-      <CancelButton onClick={onClick} disabled={disabled}>
+      <CancelButton onClick={onClick} $disabled={disabled}>
         {children}
       </CancelButton>
     );
 
-  if (type === "DELETE")
+  if (styleType === "DELETE")
     return (
-      <DeleteButton onClick={onClick} disabled={disabled}>
+      <DeleteButton onClick={onClick} $disabled={disabled}>
         {children}
       </DeleteButton>
     );

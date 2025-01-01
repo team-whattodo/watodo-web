@@ -26,7 +26,6 @@ export const ProjectWrap = styled.div`
   width: 100%;
   height: calc(100% - 24rem);
   overflow-y: scroll;
-  padding: 1rem 0;
 `;
 
 export const ProjectItem = styled.div`
@@ -44,6 +43,7 @@ export const ProjectItem = styled.div`
   &:hover{
     transform: scaleY(1.1);
   }
+  margin-top: 1rem;
 `
 
 export const ProjectDetail = styled.p`
@@ -83,4 +83,22 @@ export const UserInfo = styled.p`
 export const ButtonWrap = styled.div`
   width: 100%;
   height: 4rem;
+`
+
+export const NewWrap = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  margin-top: 1rem;
+`
+
+export const New = styled.div`
+  width: 10rem;
+  padding: 0.4rem 0;
+  text-align: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: ${COLOR.boxColor};
+  border-radius: 0.4rem;
 `

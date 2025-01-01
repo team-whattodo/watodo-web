@@ -15,17 +15,25 @@ const Intro = () => {
         <DohyeonText color={COLOR[500]} fontSize="6rem">
           WATODO
         </DohyeonText>
-        <S.Text>
-          복잡한 개발 일정 관리를 간편하게, 왓투두
-        </S.Text>
+        <S.Text>복잡한 개발 일정 관리를 간편하게, 왓투두</S.Text>
         <S.ButtonWrap>
           <S.ButtonBox>
-            <StyledButton type="SUBMIT" disabled={false} onClick={() => navigate('/login')}>
+            <StyledButton
+              styleType="SUBMIT"
+              disabled={false}
+              onClick={() => navigate("/login")}
+              type="button"
+            >
               로그인
             </StyledButton>
           </S.ButtonBox>
           <S.ButtonBox>
-            <StyledButton type="CANCEL" disabled={false} onClick={() => navigate('/signup')}>
+            <StyledButton
+              styleType="CANCEL"
+              disabled={false}
+              onClick={() => navigate("/signup")}
+              type="button"
+            >
               회원가입
             </StyledButton>
           </S.ButtonBox>
@@ -45,12 +53,22 @@ const Intro = () => {
       </S.Text>
       <S.ButtonWrap>
         <S.ButtonBox>
-          <StyledButton type="SUBMIT" disabled={false} onClick={() => navigate('/make')}>
+          <StyledButton
+            styleType="SUBMIT"
+            disabled={false}
+            onClick={() => navigate("/make")}
+            type="button"
+          >
             프로젝트 만들기
           </StyledButton>
         </S.ButtonBox>
         <S.ButtonBox>
-          <StyledButton type="CANCEL" disabled={false} onClick={() => navigate('/join')}>
+          <StyledButton
+            styleType="CANCEL"
+            disabled={false}
+            onClick={() => navigate("/join")}
+            type="button"
+          >
             프로젝트 참여하기
           </StyledButton>
         </S.ButtonBox>

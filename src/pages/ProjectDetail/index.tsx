@@ -8,6 +8,7 @@ import Sprint from "../../components/Sprint";
 import Progress from "../../components/Progress";
 import { useProjectStore } from "../../stores/project/useProjectStore";
 import Timeline from "../../components/Timeline";
+import Wbs from "../../components/Wbs";
 
 const ProjectDetail = () => {
   const { projectId } = useParams();
@@ -35,7 +36,7 @@ const ProjectDetail = () => {
           {(project?.sprint || project?.wbs) && project.sprint ? (
             <Sprint />
           ) : (
-            <></>
+            <Wbs />
           )}
 
           {!project?.sprint && !project?.wbs && (

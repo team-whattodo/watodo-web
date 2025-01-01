@@ -87,14 +87,16 @@ const MakeProject = () => {
             detail.trim().length < 1 ||
             repository.trim().length < 1
           }
-          type="SUBMIT"
+          styleType="SUBMIT"
+          type="submit"
         >
           프로젝트 생성
         </StyledButton>
         <StyledButton
           disabled={isSubmitting}
-          type="CANCEL"
+          styleType="CANCEL"
           onClick={() => navigate(-1)}
+          type="button"
         >
           취소하기
         </StyledButton>

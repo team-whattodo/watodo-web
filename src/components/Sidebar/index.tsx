@@ -37,6 +37,12 @@ const Sidebar = () => {
             <S.ProjectDetail>{item.repository}</S.ProjectDetail>
           </S.ProjectItem>
         ))}
+        {user && (
+          <S.NewWrap>
+            <S.New onClick={() => navigate("/make")}>프로젝트 만들기</S.New>
+            <S.New>프로젝트 참가하기</S.New>
+          </S.NewWrap>
+        )}
       </S.ProjectWrap>
       <S.Footer>
         {user ? (
@@ -57,12 +63,22 @@ const Sidebar = () => {
         {user && (
           <>
             <S.ButtonWrap>
-              <StyledButton type="CANCEL" disabled={false} onClick={() => {}}>
+              <StyledButton
+                styleType="CANCEL"
+                disabled={false}
+                onClick={() => {}}
+                type="button"
+              >
                 정보수정
               </StyledButton>
             </S.ButtonWrap>
             <S.ButtonWrap>
-              <StyledButton type="DELETE" disabled={false} onClick={logout}>
+              <StyledButton
+                styleType="DELETE"
+                disabled={false}
+                onClick={logout}
+                type="button"
+              >
                 로그아웃
               </StyledButton>
             </S.ButtonWrap>

@@ -3,11 +3,12 @@ import { MakeSprintForm } from "../../types/reactHookFrom/makeSprintForm";
 import StyledButton from "../StyledButton";
 import StyledInput from "../StyledInput";
 import * as S from "./style";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useMakeSprint from "../../hooks/sprint/useMakeSprint";
 
 const MakeSprint = () => {
   const { projectId } = useParams();
+  const navigate = useNavigate();
   const today = new Date();
   const {
     register,
@@ -33,9 +34,7 @@ const MakeSprint = () => {
   const deadline = watch("deadline");
 
   return (
-    <S.Container
-      onSubmit={handleSubmit(makeSprint)}
-    >
+    <S.Container onSubmit={handleSubmit(makeSprint)}>
       <S.Label>스프린트 제목</S.Label>
       <StyledInput
         type="text"
@@ -87,11 +86,17 @@ const MakeSprint = () => {
           new Date(start) <= today ||
           new Date(deadline) <= new Date(start)
         }
-        type="SUBMIT"
+        styleType="SUBMIT"
+        type="submit"
       >
         생성하기
       </StyledButton>
-      <StyledButton disabled={isSubmitting} type="CANCEL">
+      <StyledButton
+        disabled={isSubmitting}
+        styleType="CANCEL"
+        onClick={() => navigate(-1)}
+        type="button"
+      >
         취소하기
       </StyledButton>
     </S.Container>

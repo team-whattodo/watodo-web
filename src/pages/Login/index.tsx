@@ -104,7 +104,8 @@ const Login = () => {
             password.trim().length < 1 ||
             isSubmitting
           }
-          type="SUBMIT"
+          styleType="SUBMIT"
+          type="submit"
         >
           로그인
         </StyledButton>

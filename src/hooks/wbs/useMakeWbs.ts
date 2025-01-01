@@ -10,6 +10,7 @@ const useMakeWbs = (
   const navigate = useNavigate();
 
   const makeWbs = async (makeWbsForm: MakeWbsForm) => {
+    console.log(parentId);
     if (!parentId) return;
     try {
       await watodoAxios.post("/wbs", { ...makeWbsForm, parentId });

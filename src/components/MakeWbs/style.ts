@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { COLOR } from "../../constants/colors";
 
-export const Container = styled.div`
+export const Container = styled.form`
   width: 100%;
   flex: 1;
   display: flex;
@@ -36,3 +36,7 @@ export const Warning = styled.p`
   color: #ff2929;
   text-align: start;
 `;
+
+export const Spacer = styled.div`
+  flex: 1;
+`

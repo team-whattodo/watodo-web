@@ -39,6 +39,30 @@ export const Form = styled.form`
   gap: 0.4rem;
 `
 
+export const Row = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 0.8rem;
+`;
+
+export const DateInput = styled.input`
+  width: 100%;
+  border: none;
+  font-size: 1.6rem;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid ${COLOR.borderColor};
+  background: url("/assets/calendar.svg") no-repeat right 10px center
+    ${COLOR.boxColor};
+  outline: none;
+  font-family: var(--font-jua);
+  &::-webkit-calendar-picker-indicator {
+    appearance: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+`;
+
 export const Label = styled.p`
   font-size: 1.6rem;
   margin-bottom: 0.4rem;

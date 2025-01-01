@@ -172,7 +172,8 @@ const Signup = () => {
               pat.trim().length < 1 ||
               isSubmitting
             }
-            type="SUBMIT"
+            styleType="SUBMIT"
+            type="submit"
           >
             회원가입
           </StyledButton>

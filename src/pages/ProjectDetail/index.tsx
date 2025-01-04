@@ -35,11 +35,9 @@ const ProjectDetail = () => {
           )}
           {(project?.sprint || project?.wbs) && project.sprint ? (
             <Sprint />
-          ) : (
+          ) : project?.wbs ? (
             <Wbs />
-          )}
-
-          {!project?.sprint && !project?.wbs && (
+          ) : (
             <S.NoScheduleWrap>
               <S.NoScheduleText>아직 일정이 없습니다.</S.NoScheduleText>
               <DohyeonText color="white" fontSize="2.4rem">

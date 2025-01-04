@@ -36,11 +36,9 @@ const Wbs = () => {
           </StyledButton>
         </S.ButtonWrap>
       </S.AddWrap>
-      <TaskModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
-        type={modalType}
-      />
+      {modalVisible && (
+        <TaskModal setModalVisible={setModalVisible} type={modalType} />
+      )}
     </S.Container>
   );
 }
